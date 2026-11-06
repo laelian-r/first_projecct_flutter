@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "709114315915",
+    "project_id": "agora-club-ecad4",
+    "storage_bucket": "agora-club-ecad4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709114315915:android:5d38380f7bbc3a11fdc08e",
+        "android_client_info": {
+          "package_name": "com.example.first_projecct"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709114315915-v3to8ekoubqern8u64ghktajba377apb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.first_projecct",
+            "certificate_hash": "974a0df0f8a9f73106cab61ae7dd13294ab0e5a4"
+          }
+        },
+        {
+          "client_id": "709114315915-r57m6k71gkqiciuthn9q4qvt88i11igv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ3jFYkF3Fj1KnbwhWS564PuLWJ8TRVCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709114315915-r57m6k71gkqiciuthn9q4qvt88i11igv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "709114315915-tuvdhu5bibq3c097087sq22lme83jqd8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firstProjecct"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
