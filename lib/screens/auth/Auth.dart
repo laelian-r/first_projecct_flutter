@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sign_in_button/sign_in_button.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Auth extends StatefulWidget {
   // onChangedStep est une fonction qui prend un entier en paramètre et ne retourne rien.
@@ -28,6 +31,46 @@ class _AuthState extends State<Auth> {
   String _password = '';
 
   bool _isPasswordVisible = true;
+
+  // Future<void> esureInitialized() {
+  //   return GoogleSignInPlatform.instance.init(const InitParameters());
+  // }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      await GoogleSignIn.instance.initialize();
+
+      final googleUser = await GoogleSignIn.instance.authenticate();
+      final googleAuth = googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+      );
+
+      final UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithCredential(credential);
+
+      final User? user = userCredential.user;
+      if (user != null && mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Connecté avec succès !')));
+        widget.onChangedStep(1);
+      }
+    } on GoogleSignInException catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Connexion Google impossible : $e')),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Connexion Firebase impossible : $e')),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,6 +208,10 @@ class _AuthState extends State<Auth> {
                           ),
                         ),
                       ),
+
+                      SizedBox(height: 10),
+
+                      SignInButton(Buttons.google, onPressed: signInWithGoogle),
 
                       SizedBox(height: 10),
 
